@@ -9,7 +9,7 @@ function getComputerChoice(){
 }
 
 // Play round 
-function palayRound(playerSelection = 'rock'){
+function playRound(playerSelection = 'rock'){
   playerSelection = playerSelection.toLowerCase()
   const computerSelection = getComputerChoice()
   // compare player choice with computer choice
