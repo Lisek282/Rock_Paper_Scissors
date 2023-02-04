@@ -27,9 +27,31 @@ function playRound(playerSelection = 'rock'){
 }
 // play the game 5 times
 function game(){
+  let playerResult = 0
+  let computerResult = 0
 
+  for (let i = 0; i < 5; i++) {
+    let roundResult = playRound(prompt("Choice Rock, Paper or Scissors"))
+
+    if(roundResult === 'tie'){
+      console.log( `It's tie no one gets point. Current score: Player ${playerResult} : ${computerResult} Computer`)
+    } 
+    else if (roundResult === 'win'){
+      playerResult++
+      console.log( `Player win's this round. Current score: Player ${playerResult} : ${computerResult} Computer`)
+    }
+    else if (roundResult === 'lose'){
+      computerResult++
+      console.log( `Computer win's this round. Current score: Player ${playerResult} : ${computerResult} Computer`)
+    }
+    else{
+      console.log( "Choice correct value: Rock, Paper or Scissors")
+    }
+  }
+
+  return `Game ends ${playerResult === computerResult ? "It's tie" : playerResult > computerResult ? "Player wins" : "Computer wins"}`
 }
 
 
-
+console.log(game())
 
