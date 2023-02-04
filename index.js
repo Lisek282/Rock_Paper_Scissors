@@ -49,7 +49,7 @@ function game(){
     }
   }
 
-  return `Game ends ${playerResult === computerResult ? "It's tie" : playerResult > computerResult ? "Player wins" : "Computer wins"}`
+  return `Game ends, ${playerResult === computerResult ? "it's tie" : playerResult > computerResult ? "Player wins" : "Computer wins"}`
 }
 
 
