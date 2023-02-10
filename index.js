@@ -1,57 +1,92 @@
-// Randomly generate computer choice
+const display = document.querySelector('.display')
+const btnRock = document.getElementById('rock')
+const btnPaper = document.getElementById('paper')
+const btnScissors = document.getElementById('scissors')
+const player = document.getElementById('player')
+const computer = document.getElementById('computer')
+const rounds = document.getElementById('rounds')
+const announcement = document.querySelector('.announcement')
+
+let playerResult = 0
+let computerResult = 0
+let numOfPlays = 0
+
+
+btnRock.addEventListener('click', () => playRound('rock'))
+btnPaper.addEventListener('click', () => playRound('paper'))
+btnScissors.addEventListener('click', () => playRound('scissors'))
+
 function getComputerChoice(){
-  // Array of computer choice
   const choiceArr = ['rock', 'paper', 'scissors']
-  // Random number (represent position in the array)
   let random = Math.floor(Math.random()*3) 
-  // return random choice
+
   return choiceArr[random]
 }
 
 // Play round 
-function playRound(playerSelection = 'rock'){
-  playerSelection = playerSelection.toLowerCase()
+function playRound(playerSelection){
+  let roundResult = ''
   const computerSelection = getComputerChoice()
+
+  display.innerHTML = `<p>${playerSelection}</p>
+                       <p>${computerSelection}</p>
+                       `
+
   // compare player choice with computer choice
   switch(playerSelection) {
     case 'rock':
-      return computerSelection === 'rock' ? `tie` : computerSelection === 'paper' ? `lose` : `win`
+      computerSelection === 'rock' ? roundResult = `tie` : computerSelection === 'paper' ? roundResult = `lose` : roundResult = `win`
+      break
     case 'paper':
-      return computerSelection === 'paper' ? `tie` : computerSelection === 'scissors' ? `lose` : `win`
+      computerSelection === 'paper' ? roundResult = `tie` : computerSelection === 'scissors' ? roundResult = `lose` : roundResult = `win`
+      break
     case 'scissors':
-      return computerSelection === 'scissors' ? `tie` : computerSelection === 'rock' ? `lose` : `win`
-    default:
-      return "Choice correct value: Rock, Paper or Scissors"
-    
+       computerSelection === 'scissors' ? roundResult = `tie` : computerSelection === 'rock' ? roundResult = `lose` : roundResult = `win`
+       break
   }
+
+  game(roundResult)
 }
-// play the game 5 times
-function game(){
-  let playerResult = 0
-  let computerResult = 0
 
-  for (let i = 0; i < 5; i++) {
-    let roundResult = playRound(prompt("Choice Rock, Paper or Scissors"))
 
+function game(roundResult){
+
+  if(numOfPlays <= 4){
     if(roundResult === 'tie'){
-      console.log( `It's tie no one gets point. Current score: Player ${playerResult} : ${computerResult} Computer`)
+      announcement.innerText = `It's tie no one gets point`
+      updatePointsRounds()
     } 
     else if (roundResult === 'win'){
       playerResult++
-      console.log( `Player win's this round. Current score: Player ${playerResult} : ${computerResult} Computer`)
+      announcement.innerText = `Player win's this round`
+      updatePointsRounds()
     }
     else if (roundResult === 'lose'){
       computerResult++
-      console.log( `Computer win's this round. Current score: Player ${playerResult} : ${computerResult} Computer`)
-    }
-    else{
-      console.log( "Choice correct value: Rock, Paper or Scissors")
+      announcement.innerText = `Computer win's this round`
+      updatePointsRounds()
     }
   }
 
-  return `Game ends, ${playerResult === computerResult ? "it's tie" : playerResult > computerResult ? "Player wins" : "Computer wins"}`
+}
+
+function updatePointsRounds(){
+  numOfPlays++
+  player.innerText = `Player: ${playerResult}`
+  computer.innerText = `Computer: ${computerResult}`
+  rounds.innerHTML = `Rounds: ${numOfPlays}`
+
+  if(numOfPlays === 5){
+    gameEnds()
+  }
+}
+
+function gameEnds(){
+  announcement.innerText = `Game ends, ${playerResult === computerResult ? "it's tie" : playerResult > computerResult ? "Player wins" : "Computer wins"}`
+  numOfPlays = 0
+  playerResult = 0
+  computerResult = 0
 }
 
 
-console.log(game())
 
