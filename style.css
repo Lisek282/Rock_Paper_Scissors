@@ -3,6 +3,13 @@
   margin: 0;
 }
 
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Zeyada', cursive;
+}
+
 .display{
   background-color: green;
   width: 50vw;
@@ -15,4 +22,15 @@
   background-color: yellow;
   width: 50vw;
   height: 10vh;
+}
+
+.pointsDisplay{
+  display: flex;
+  width: 50vw;
+  background-color: blue;
+  gap: 2em;
+}
+
+#rounds{
+  margin-left: auto;
 }

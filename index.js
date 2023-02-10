@@ -82,7 +82,7 @@ function updatePointsRounds(){
 }
 
 function gameEnds(){
-  announcement.innerText = `Game ends, ${playerResult === computerResult ? "it's tie" : playerResult > computerResult ? "Player wins" : "Computer wins"}`
+  announcement.innerText = `Game ends, ${playerResult === computerResult ? "It's tie" : playerResult > computerResult ? "Player wins" : "Computer wins"}`
   numOfPlays = 0
   playerResult = 0
   computerResult = 0
