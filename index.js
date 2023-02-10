@@ -28,8 +28,8 @@ function playRound(playerSelection){
   let roundResult = ''
   const computerSelection = getComputerChoice()
 
-  display.innerHTML = `<p>${playerSelection}</p>
-                       <p>${computerSelection}</p>
+  display.innerHTML = `<p class="weaponText">${playerSelection.toUpperCase()}</p>
+                       <p class="weaponText">${computerSelection.toUpperCase()}</p>
                        `
 
   // compare player choice with computer choice
@@ -74,7 +74,7 @@ function updatePointsRounds(){
   numOfPlays++
   player.innerText = `Player: ${playerResult}`
   computer.innerText = `Computer: ${computerResult}`
-  rounds.innerHTML = `Rounds: ${numOfPlays}`
+  rounds.innerHTML = `Round: ${numOfPlays}`
 
   if(numOfPlays === 5){
     gameEnds()
